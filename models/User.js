@@ -1,16 +1,12 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
   {
-    donor_firstname: {
+    name: {
       type: String,
       required: true,
-
-    },
-    donor_lastname: {
-      type: String,
-      required: true,
-
+      min: 2,
+      max: 100,
     },
     email: {
       type: String,
@@ -23,9 +19,9 @@ const UserSchema = new mongoose.Schema(
       required: true,
       min: 5,
     },
-    donor_city: String,
-    donor_state: String,
-    donor_zip: String,
+    city: String,
+    state: String,
+    country: String,
     occupation: String,
     phoneNumber: String,
     transactions: Array,
@@ -38,6 +34,13 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// const UserSchema = new mongoose.Schema({
+//   donor_firstname: String,
+//   donor_lastname: String,
+//   donor_city: String,
+//   donor_state: String,
+//   donor_zip: String,
+// });
 
 // id
 // 13763843
