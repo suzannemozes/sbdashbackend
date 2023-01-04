@@ -1,95 +1,108 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      min: 2,
-      max: 100,
-    },
-    email: {
-      type: String,
-      required: true,
-      max: 50,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-      min: 5,
-    },
-    city: String,
-    state: String,
-    country: String,
-    occupation: String,
-    phoneNumber: String,
-    transactions: Array,
-    role: {
-      type: String,
-      enum: ["user", "admin", "superadmin"],
-      default: "admin",
-    },
-  },
-  { timestamps: true }
-);
+// const UserSchema = new mongoose.Schema(
+//   {
+//     name: {
+//       type: String,
+//       required: true,
+//       min: 2,
+//       max: 100,
+//     },
+//     email: {
+//       type: String,
+//       required: true,
+//       max: 50,
+//       unique: true,
+//     },
+//     password: {
+//       type: String,
+//       required: true,
+//       min: 5,
+//     },
+//     city: String,
+//     state: String,
+//     country: String,
+//     occupation: String,
+//     phoneNumber: String,
+//     transactions: Array,
+//     role: {
+//       type: String,
+//       enum: ["user", "admin", "superadmin"],
+//       default: "admin",
+//     },
+//   },
+//   { timestamps: true }
+// );
 
-// const UserSchema = new mongoose.Schema({
-//   donor_firstname: String,
-//   donor_lastname: String,
-//   donor_city: String,
-//   donor_state: String,
-//   donor_zip: String,
-// });
+const UserSchema = new mongoose.Schema({
+  id: Number,
+  donor_firstname: String,
+  donor_lastname: String,
+  donor_city: String,
+  donor_state: String,
+  donor_zip: String,
+  donor_is_eligible_for_express_lane: Boolean,
+  donor_phone: String,
+  created_at: Date,
+  order_number: String,
+  contribution_form: String,
+  refcodes: {},
+  refcode: String,
+  recurring_period: String,
+  recurring_duration: String,
+  is_paypal: Boolean,
+  is_mobile: Boolean,
+  is_express: Boolean,
+  with_express_lane: Boolean,
+  express_signup: Boolean,
+  unique_identifier: String,
+  status: String,
+  text_message_option: String,
+  custom_fields: [],
+  sequence: Number,
+  entity_id: Number,
+  committee_name: String,
+  amount: Number,
+  paid_at: String,
+  lineitem_id: Number,
+  form_name: String,
+  form_managing_entity_name: String,
+  form_managing_entity_committee_name: String,
+});
 
-// id
-// 13763843
-// donor_firstname
-// "Cynthia"
-// donor_lastname
-// "Jeremy"
-// donor_city
-// "TUCSON"
-// donor_state
-// "AZ"
-// donor_zip
-// 85741
-// donor_is_eligible_for_express_lane
-// true
-// donor_phone
-// "+18881125520"
-// created_at
-// "2021-05-20 03:24:47+00"
-// order_number
-// BinData(0, 'U0IyMjIyMzc5MTg=')
-// contribution_form
-// "Cheetah"
-// refcodes
-// "{"refcode": "ref-Crane"}"
-// refcode
-// "ref-Crane"
-// recurring_period
-// "monthly"
-// recurring_duration
-// "infinite"
-// is_paypal
-// false
-// is_mobile
-// true
-// is_express
-// true
-// with_express_lane
-// false
-// express_signup
-// false
-// unique_identifier
-// "qxHMqZAvjF"
-// status
-// "approved"
-// text_message_option
-// "unknown"
-// custom_fields
-// "[]"
+// refcodes: {
+//   type: String,
+//   enum: [
+//     "ref-Crane",
+//     "ref-Duck",
+//     "ref-Clownfish",
+//     "ref-Dinosaur",
+//     "ref-Dragon",
+//     "ref-Cougar",
+//     "ref-Cow",
+//     "ref-Deer",
+//     "ref-Eel",
+//     "ref-Crow",
+//     "ref-Cod",
+//     "ref-Crab",
+//     "ref-Cricket",
+//     "ref-Crocodile",
+//     "ref-Cobra",
+//     "ref-Cuckoo",
+//     "ref-Clam",
+//     "ref-Elephant",
+//     "ref-Dolphin",
+//     "ref-Coyote",
+//     "ref-Donkey",
+//     "ref-Dove",
+//     "ref-Crane",
+//     "ref-Eagle",
+//     "ref-Crayfish",
+//     "ref-Dog",
+//     "ref-",
+//     "ref-",
+//   ],
+// },
 
 const User = mongoose.model("User", UserSchema);
 export default User;
