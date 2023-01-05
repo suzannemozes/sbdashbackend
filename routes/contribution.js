@@ -1,5 +1,5 @@
 import express from "express";
-import { getContributions } from "../controllers/client.js";
+import { getContributions } from "../controllers/contribution.js";
 
 const router = express.Router();
 

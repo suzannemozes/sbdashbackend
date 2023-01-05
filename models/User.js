@@ -1,39 +1,5 @@
 import mongoose from "mongoose";
 
-// const UserSchema = new mongoose.Schema(
-//   {
-//     name: {
-//       type: String,
-//       required: true,
-//       min: 2,
-//       max: 100,
-//     },
-//     email: {
-//       type: String,
-//       required: true,
-//       max: 50,
-//       unique: true,
-//     },
-//     password: {
-//       type: String,
-//       required: true,
-//       min: 5,
-//     },
-//     city: String,
-//     state: String,
-//     country: String,
-//     occupation: String,
-//     phoneNumber: String,
-//     transactions: Array,
-//     role: {
-//       type: String,
-//       enum: ["user", "admin", "superadmin"],
-//       default: "admin",
-//     },
-//   },
-//   { timestamps: true }
-// );
-
 const UserSchema = new mongoose.Schema({
   id: Number,
   donor_firstname: String,
@@ -69,40 +35,6 @@ const UserSchema = new mongoose.Schema({
   form_managing_entity_name: String,
   form_managing_entity_committee_name: String,
 });
-
-// refcodes: {
-//   type: String,
-//   enum: [
-//     "ref-Crane",
-//     "ref-Duck",
-//     "ref-Clownfish",
-//     "ref-Dinosaur",
-//     "ref-Dragon",
-//     "ref-Cougar",
-//     "ref-Cow",
-//     "ref-Deer",
-//     "ref-Eel",
-//     "ref-Crow",
-//     "ref-Cod",
-//     "ref-Crab",
-//     "ref-Cricket",
-//     "ref-Crocodile",
-//     "ref-Cobra",
-//     "ref-Cuckoo",
-//     "ref-Clam",
-//     "ref-Elephant",
-//     "ref-Dolphin",
-//     "ref-Coyote",
-//     "ref-Donkey",
-//     "ref-Dove",
-//     "ref-Crane",
-//     "ref-Eagle",
-//     "ref-Crayfish",
-//     "ref-Dog",
-//     "ref-",
-//     "ref-",
-//   ],
-// },
 
 const User = mongoose.model("User", UserSchema);
 export default User;
