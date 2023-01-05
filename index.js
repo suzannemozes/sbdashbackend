@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import { MongoClient } from "mongodb";
 import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
@@ -13,7 +14,12 @@ import managementRoutes from "./routes/management.js";
 import User from "./models/User.js";
 import Donor from "./models/Donor.js";
 import DonorStat from "./models/DonorStat.js";
-import { data, dataDonor, dataDonorStat } from "./data/index.js";
+import {
+  data,
+  dataSmallDonorSample,
+  dataDonor,
+  dataDonorStat,
+} from "./data/index.js";
 
 // CONFIG
 dotenv.config();
@@ -33,6 +39,14 @@ app.use("/management", managementRoutes);
 
 // MONGOOSE
 const PORT = process.env.PORT || 9000;
+// const client = await MongoClient.connect(
+//   "mongodb+srv://suzannemozes:Req33Fir3@cluster0.f0fagr4.mongodb.net/test",
+//   { useNewUrlParser: true, useUnifiedTopology: true }
+// );
+// const coll = client.db("switchboard").collection("actbluedata");
+// const cursor = coll.aggregate(agg);
+// const result = await cursor.toArray();
+// await client.close();
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewURLParser: true,
@@ -40,7 +54,7 @@ mongoose
   })
   .then(() => {
     app.listen(PORT, () => console.log(`server port: ${PORT}`));
-    // Donor.insertMany(dataDonor);
+    // Donor.insertMany(dataSmallDonorSample);
     // DonorStat.insertMany(dataDonorStat);
   })
   .catch((error) => console.log(`${error} did not connect`));
