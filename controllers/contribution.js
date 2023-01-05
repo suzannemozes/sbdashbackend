@@ -4,21 +4,17 @@ import User from "../models/User.js";
 
 export const getDonors = async (req, res) => {
   try {
-    const donors = await Donor.find();
+    const donors = await User.find();
+    res.status(200).json(donors);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
-    const donorsWithStats = await Promise.all(
-      donors.map(async (donor) => {
-        const stat = await DonorStat.find({
-          id: donor.id,
-        });
-        return {
-          ...donor._doc,
-          stat,
-        };
-      })
-    );
-
-    res.status(200).json(donorsWithStats);
+export const getDonations = async (req, res) => {
+  try {
+    const donations = await User.find();
+    res.status(200).json(donations);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
