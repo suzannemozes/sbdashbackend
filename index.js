@@ -12,8 +12,7 @@ import managementRoutes from "./routes/management.js";
 
 //data imports
 import User from "./models/User.js";
-import Donor from "./models/Donor.js";
-import DonorStat from "./models/DonorStat.js";
+
 import {
   data,
   dataSmallDonorSample,

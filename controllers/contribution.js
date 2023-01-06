@@ -18,14 +18,6 @@ export const getDonations = async (req, res) => {
   }
 };
 
-export const getDonations = async (req, res) => {
-  try {
-    res.status(200).json();
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
-
 export const getTransactions = async (req, res) => {
   try {
     // sort should look like this: { "field": "userId", "sort": "desc"}
@@ -42,8 +34,7 @@ export const getTransactions = async (req, res) => {
     };
     const sortFormatted = Boolean(sort) ? generateSort() : {};
 
-    const transactions = await Transaction.find({
-      // checking for cost field and "or" allows us to search multiple fields
+    const transactions = await User.find({
       $or: [
         { cost: { $regex: new RegExp(search, "i") } },
         { userId: { $regex: new RegExp(search, "i") } },
@@ -53,7 +44,7 @@ export const getTransactions = async (req, res) => {
       .skip(page * pageSize)
       .limit(pageSize);
 
-    const total = await Transaction.countDocuments({
+    const total = await User.countDocuments({
       name: { $regex: search, $options: "i" },
     });
 
@@ -61,6 +52,15 @@ export const getTransactions = async (req, res) => {
       transactions,
       total,
     });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export const getStats = async (req, res) => {
+  try {
+    const stats = await User.find();
+    res.status(200).json(stats);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
