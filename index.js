@@ -8,16 +8,18 @@ import helmet from "helmet";
 import morgan from "morgan";
 import contributionRoutes from "./routes/contribution.js";
 import generalRoutes from "./routes/general.js";
-import managementRoutes from "./routes/management.js";
+import statsRoutes from "./routes/stats.js";
 
 //data imports
 import User from "./models/User.js";
+import State from "./models/State.js";
 
 import {
   data,
   dataSmallDonorSample,
   dataDonor,
   dataDonorStat,
+  dataState,
 } from "./data/index.js";
 
 // CONFIG
@@ -34,18 +36,11 @@ app.use(cors());
 // ROUTES
 app.use("/contribution", contributionRoutes);
 app.use("/general", generalRoutes);
-app.use("/management", managementRoutes);
+app.use("/stats", statsRoutes);
 
 // MONGOOSE
 const PORT = process.env.PORT || 9000;
-// const client = await MongoClient.connect(
-//   "mongodb+srv://suzannemozes:Req33Fir3@cluster0.f0fagr4.mongodb.net/test",
-//   { useNewUrlParser: true, useUnifiedTopology: true }
-// );
-// const coll = client.db("switchboard").collection("actbluedata");
-// const cursor = coll.aggregate(agg);
-// const result = await cursor.toArray();
-// await client.close();
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewURLParser: true,
@@ -54,6 +49,6 @@ mongoose
   .then(() => {
     app.listen(PORT, () => console.log(`server port: ${PORT}`));
     // Donor.insertMany(dataSmallDonorSample);
-    // DonorStat.insertMany(dataDonorStat);
+    // State.insertMany(dataState);
   })
   .catch((error) => console.log(`${error} did not connect`));

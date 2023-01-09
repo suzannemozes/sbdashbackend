@@ -6,5 +6,8 @@ const router = express.Router();
 router.get("/donors", getDonors);
 router.get("/donations", getDonations);
 router.get("/transactions", getTransactions);
+router.get("/geo", getGeo);
+
+
 
 export default router;
