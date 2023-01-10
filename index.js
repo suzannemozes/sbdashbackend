@@ -12,7 +12,7 @@ import statsRoutes from "./routes/stats.js";
 
 //data imports
 import User from "./models/User.js";
-import State from "./models/State.js";
+import OverallStat from "./models/OverallStat.js";
 
 import {
   data,

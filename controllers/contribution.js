@@ -60,18 +60,8 @@ export const getTransactions = async (req, res) => {
 //not functioning and needs work // data isn't properly formatted for nivo
 export const getGeo = async (req, res) => {
   try {
-    const users = await User.find();
-
-    const mappedStates = users.reduce((acc, state) => {
-      acc[state]++;
-    }, {});
-
-    const formattedStates = Object.entries(mappedStates).map(
-      ([state, count]) => {
-        return { id: state, value: count };
-      }
-    );
-    res.status(200).json(formattedStates);
+    const geo = await User.find();
+    res.status(200).json(geo);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
